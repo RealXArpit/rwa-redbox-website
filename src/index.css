@@ -1,96 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* REDbox Dark Gold Theme */
+    --background: 224 33% 4%;
+    --foreground: 38 30% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 226 33% 9%;
+    --card-foreground: 38 30% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 226 33% 9%;
+    --popover-foreground: 38 30% 90%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 38 40% 55%;
+    --primary-foreground: 224 33% 4%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary-light: 38 52% 71%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 224 28% 12%;
+    --secondary-foreground: 38 30% 90%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 222 23% 16%;
+    --muted-foreground: 222 20% 58%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 224 28% 12%;
+    --accent-foreground: 38 30% 90%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 4 60% 43%;
+    --destructive-foreground: 38 30% 90%;
+    --destructive-dim: 4 60% 43%;
 
-    --radius: 0.5rem;
+    --border: 0 0% 100% / 0.06;
+    --input: 0 0% 100% / 0.06;
+    --ring: 38 40% 55%;
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 0.75rem;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --gold: 38 40% 55%;
+    --gold-light: 38 52% 71%;
+    --gold-dim: 38 40% 55% / 0.10;
+    --gold-border: 38 40% 55% / 0.20;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --surface: 226 33% 9%;
+    --surface-2: 225 30% 12%;
+    --surface-3: 223 26% 16%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --text-dim: 221 24% 32%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-background: 226 33% 9%;
+    --sidebar-foreground: 38 30% 90%;
+    --sidebar-primary: 38 40% 55%;
+    --sidebar-primary-foreground: 224 33% 4%;
+    --sidebar-accent: 224 28% 12%;
+    --sidebar-accent-foreground: 38 30% 90%;
+    --sidebar-border: 0 0% 100% / 0.06;
+    --sidebar-ring: 38 40% 55%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Source Sans 3', 'Trebuchet MS', sans-serif;
   }
 }
 
@@ -101,5 +72,20 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .gold-line {
+    @apply w-11 h-0.5 bg-primary mb-4;
+  }
+  .gold-line-center {
+    @apply w-11 h-0.5 bg-primary mb-4 mx-auto;
   }
 }
