@@ -130,7 +130,7 @@ const PageRealtors = () => {
             title="Ready to Evolve from Realtor to Asset Manager?"
             body="REDbox is open to Realtors who are ready to build a tokenisation business. Register, get onboarded, and your branded platform is live."
             buttons={[
-              <Btn key="r">Register as Realtor</Btn>,
+              <Btn key="r" onClick={() => setComingSoon(true)}>Register as Realtor</Btn>,
               <Btn key="h" variant="outline" onClick={() => nav("/how")}>See How It Works</Btn>,
             ]}
           />
