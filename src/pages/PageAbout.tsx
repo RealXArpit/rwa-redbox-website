@@ -1,12 +1,19 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   H1, H2, Body, Btn, Card, Tag, GoldLine, Label, AccentBox,
   Divider, FeatureItem, StatCard, SectionHeader, Grid,
   TwoCol, CtaBand, HeroBg,
 } from "@/components/redbox/Primitives";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
+import DeveloperOnboardingDialog from "@/components/redbox/DeveloperOnboardingDialog";
 
 const PageAbout = () => {
   const nav = useNavigate();
+  const [devDialogOpen, setDevDialogOpen] = useState(false);
+  const [realtorSoon, setRealtorSoon] = useState(false);
 
   return (
     <div>
