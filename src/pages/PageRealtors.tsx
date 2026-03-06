@@ -1,12 +1,17 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   H1, H2, H3, Body, Btn, Card, Tag, GoldLine, Label, AccentBox,
   Divider, StepNum, FeatureItem, InvestorCard, SectionHeader, Grid,
   TwoCol, CtaBand, HeroBg,
 } from "@/components/redbox/Primitives";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
 
 const PageRealtors = () => {
   const nav = useNavigate();
+  const [comingSoon, setComingSoon] = useState(false);
 
   return (
     <div>
