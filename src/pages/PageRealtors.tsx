@@ -23,7 +23,7 @@ const PageRealtors = () => {
           <H1>You're a Realtor.<br /><span className="text-primary">REDbox Makes You<br />an Asset Manager.</span></H1>
           <Body lead className="max-w-[600px] mt-6 mb-10">REDbox is built for Realtors who want to go further — sourcing tokenised assets, building an investor base, and managing client relationships through the full investment lifecycle.</Body>
           <div className="flex gap-3.5 flex-wrap">
-            <Btn>Register as Realtor</Btn>
+            <Btn onClick={() => setComingSoon(true)}>Register as Realtor</Btn>
             <Btn variant="outline" onClick={() => nav("/how")}>See How It Works</Btn>
           </div>
         </div>
