@@ -1,4 +1,13 @@
+import { useState } from "react";
 import { Btn } from "./Primitives";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import DeveloperOnboardingDialog from "@/components/redbox/DeveloperOnboardingDialog";
 
 interface NavProps {
   page: string;
