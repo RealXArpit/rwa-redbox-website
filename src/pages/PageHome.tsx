@@ -205,6 +205,26 @@ const PageHome = () => {
           </p>
         </div>
       </div>
+      {/* DEVELOPER ONBOARDING DIALOG */}
+      <DeveloperOnboardingDialog open={devDialogOpen} onOpenChange={setDevDialogOpen} />
+
+      {/* REALTOR COMING SOON DIALOG */}
+      <Dialog open={realtorSoon} onOpenChange={setRealtorSoon}>
+        <DialogContent className="sm:max-w-md text-center">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-heading">Coming Soon 🚀</DialogTitle>
+            <DialogDescription className="text-base mt-3">
+              Realtor registration is launching soon. For early access or enquiries, reach out to us at{" "}
+              <a
+                href="mailto:hi@RWAREDbox.com"
+                className="text-primary font-semibold hover:underline"
+              >
+                hi@RWAREDbox.com
+              </a>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
