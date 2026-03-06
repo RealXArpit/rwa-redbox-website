@@ -196,8 +196,8 @@ const PageHome = () => {
             title="Ready to Lead the Tokenisation Wave?"
             body="REDbox is available to qualifying Real Estate Developers and Realtors. Register, get approved, and your branded tokenisation platform is live on your own website."
             buttons={[
-              <Btn key="d" onClick={() => nav("/developers")}>Apply as Developer</Btn>,
-              <Btn key="r" variant="outline" onClick={() => nav("/realtors")}>Register as Realtor</Btn>,
+              <Btn key="d" onClick={() => setDevDialogOpen(true)}>Apply as Developer</Btn>,
+              <Btn key="r" variant="outline" onClick={() => setRealtorSoon(true)}>Register as Realtor</Btn>,
             ]}
           />
           <p className="font-body text-[0.83rem] text-muted-foreground text-center mt-6">
