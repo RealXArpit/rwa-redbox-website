@@ -1,12 +1,17 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   H1, H2, H3, Body, Btn, Card, Tag, GoldLine, Label, AccentBox,
   Divider, StepNum, FeatureItem, InvestorCard, SectionHeader, Grid,
   TwoCol, CtaBand, HeroBg,
 } from "@/components/redbox/Primitives";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
 
 const PageRealtors = () => {
   const nav = useNavigate();
+  const [comingSoon, setComingSoon] = useState(false);
 
   return (
     <div>
@@ -18,7 +23,7 @@ const PageRealtors = () => {
           <H1>You're a Realtor.<br /><span className="text-primary">REDbox Makes You<br />an Asset Manager.</span></H1>
           <Body lead className="max-w-[600px] mt-6 mb-10">REDbox is built for Realtors who want to go further — sourcing tokenised assets, building an investor base, and managing client relationships through the full investment lifecycle.</Body>
           <div className="flex gap-3.5 flex-wrap">
-            <Btn>Register as Realtor</Btn>
+            <Btn onClick={() => setComingSoon(true)}>Register as Realtor</Btn>
             <Btn variant="outline" onClick={() => nav("/how")}>See How It Works</Btn>
           </div>
         </div>
@@ -125,12 +130,29 @@ const PageRealtors = () => {
             title="Ready to Evolve from Realtor to Asset Manager?"
             body="REDbox is open to Realtors who are ready to build a tokenisation business. Register, get onboarded, and your branded platform is live."
             buttons={[
-              <Btn key="r">Register as Realtor</Btn>,
+              <Btn key="r" onClick={() => setComingSoon(true)}>Register as Realtor</Btn>,
               <Btn key="h" variant="outline" onClick={() => nav("/how")}>See How It Works</Btn>,
             ]}
           />
         </div>
       </div>
+      {/* COMING SOON DIALOG */}
+      <Dialog open={comingSoon} onOpenChange={setComingSoon}>
+        <DialogContent className="sm:max-w-md text-center">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-heading">Coming Soon 🚀</DialogTitle>
+            <DialogDescription className="text-base mt-3">
+              Realtor registration is launching soon. For early access or enquiries, reach out to us at{" "}
+              <a
+                href="mailto:hi@RWAREDbox.com"
+                className="text-primary font-semibold hover:underline"
+              >
+                hi@RWAREDbox.com
+              </a>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
