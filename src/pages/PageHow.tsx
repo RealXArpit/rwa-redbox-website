@@ -1,15 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   H1, Body, Btn, Tag, Divider, FeatureItem,
   SectionHeader, TwoCol, CtaBand, HeroBg, ProcessStep,
 } from "@/components/redbox/Primitives";
 
-interface PageProps {
-  setPage: (page: string) => void;
-}
-
-const PageHow = ({ setPage }: PageProps) => {
+const PageHow = () => {
   const [tab, setTab] = useState<"dev" | "rel">("dev");
+  const nav = useNavigate();
 
   return (
     <div>
@@ -115,8 +113,8 @@ const PageHow = ({ setPage }: PageProps) => {
             title="Ready to Get Started?"
             body="The RealX team is ready to walk you through the process and answer any questions."
             buttons={[
-              <Btn key="d" onClick={() => setPage("developers")}>I'm a Developer</Btn>,
-              <Btn key="r" variant="outline" onClick={() => setPage("realtors")}>I'm a Realtor</Btn>,
+              <Btn key="d" onClick={() => nav("/developers")}>I'm a Developer</Btn>,
+              <Btn key="r" variant="outline" onClick={() => nav("/realtors")}>I'm a Realtor</Btn>,
             ]}
           />
         </div>

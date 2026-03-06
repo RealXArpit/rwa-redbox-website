@@ -3,8 +3,14 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AppLayout from "./components/redbox/AppLayout";
+import PageHome from "./pages/PageHome";
+import PageDevelopers from "./pages/PageDevelopers";
+import PageRealtors from "./pages/PageRealtors";
+import PageHow from "./pages/PageHow";
+import PageAbout from "./pages/PageAbout";
+import PageFaq from "./pages/PageFaq";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +21,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<PageHome />} />
+            <Route path="/developers" element={<PageDevelopers />} />
+            <Route path="/realtors" element={<PageRealtors />} />
+            <Route path="/how" element={<PageHow />} />
+            <Route path="/about" element={<PageAbout />} />
+            <Route path="/faq" element={<PageFaq />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

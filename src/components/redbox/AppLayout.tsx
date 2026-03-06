@@ -1,0 +1,34 @@
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Nav, Footer } from "./Layout";
+
+const AppLayout = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const pageMap: Record<string, string> = {
+    "/": "home",
+    "/developers": "developers",
+    "/realtors": "realtors",
+    "/how": "how",
+    "/about": "about",
+    "/faq": "faq",
+  };
+
+  const goTo = (p: string) => {
+    const route = p === "home" ? "/" : `/${p}`;
+    navigate(route);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const currentPage = pageMap[location.pathname] || "home";
+
+  return (
+    <div className="min-h-screen">
+      <Nav page={currentPage} setPage={goTo} />
+      <Outlet />
+      <Footer setPage={goTo} />
+    </div>
+  );
+};
+
+export default AppLayout;
