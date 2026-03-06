@@ -4,10 +4,16 @@ import {
   H1, Body, Btn, Tag, Divider, FeatureItem,
   SectionHeader, TwoCol, CtaBand, HeroBg, ProcessStep,
 } from "@/components/redbox/Primitives";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
+import DeveloperOnboardingDialog from "@/components/redbox/DeveloperOnboardingDialog";
 
 const PageHow = () => {
   const [tab, setTab] = useState<"dev" | "rel">("dev");
   const nav = useNavigate();
+  const [devDialogOpen, setDevDialogOpen] = useState(false);
+  const [realtorSoon, setRealtorSoon] = useState(false);
 
   return (
     <div>
@@ -113,12 +119,25 @@ const PageHow = () => {
             title="Ready to Get Started?"
             body="The RealX team is ready to walk you through the process and answer any questions."
             buttons={[
-              <Btn key="d" onClick={() => nav("/developers")}>I'm a Developer</Btn>,
-              <Btn key="r" variant="outline" onClick={() => nav("/realtors")}>I'm a Realtor</Btn>,
+              <Btn key="d" onClick={() => setDevDialogOpen(true)}>Apply as Developer</Btn>,
+              <Btn key="r" variant="outline" onClick={() => setRealtorSoon(true)}>Register as Realtor</Btn>,
             ]}
           />
         </div>
       </div>
+
+      <DeveloperOnboardingDialog open={devDialogOpen} onOpenChange={setDevDialogOpen} />
+      <Dialog open={realtorSoon} onOpenChange={setRealtorSoon}>
+        <DialogContent className="sm:max-w-md text-center">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-heading">Coming Soon 🚀</DialogTitle>
+            <DialogDescription className="text-base mt-3">
+              Realtor registration is launching soon. For early access or enquiries, reach out to us at{" "}
+              <a href="mailto:hi@RWAREDbox.com" className="text-primary font-semibold hover:underline">hi@RWAREDbox.com</a>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
