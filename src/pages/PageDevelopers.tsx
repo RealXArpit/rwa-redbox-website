@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   H1, H2, H3, Body, Btn, Card, Tag, GoldLine, Label, AccentBox,
   Divider, StepNum, FeatureItem, SectionHeader, Grid,
@@ -6,12 +7,9 @@ import {
 } from "@/components/redbox/Primitives";
 import DeveloperOnboardingDialog from "@/components/redbox/DeveloperOnboardingDialog";
 
-interface PageProps {
-  setPage: (page: string) => void;
-}
-
-const PageDevelopers = ({ setPage }: PageProps) => {
+const PageDevelopers = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const nav = useNavigate();
 
   return (
     <div>
@@ -26,7 +24,7 @@ const PageDevelopers = ({ setPage }: PageProps) => {
           <Body lead className="max-w-[580px] mt-6 mb-10">Your own branded Property Tokenisation platform — running on your own website, backed by India's most trusted tokenisation infrastructure, live in minutes.</Body>
           <div className="flex gap-3.5 flex-wrap">
             <Btn onClick={() => setDialogOpen(true)}>Apply as Developer</Btn>
-            <Btn variant="outline" onClick={() => setPage("how")}>See How It Works</Btn>
+            <Btn variant="outline" onClick={() => nav("/how")}>See How It Works</Btn>
           </div>
         </div>
       </div>
@@ -106,7 +104,7 @@ const PageDevelopers = ({ setPage }: PageProps) => {
             body="Six steps from application to your first live deal. The RealX team walks you through every one."
             buttons={[
               <Btn key="a" onClick={() => setDialogOpen(true)}>Apply as Developer</Btn>,
-              <Btn key="h" variant="outline" onClick={() => setPage("how")}>See the 6-Step Process</Btn>,
+              <Btn key="h" variant="outline" onClick={() => nav("/how")}>See the 6-Step Process</Btn>,
             ]}
           />
         </div>
