@@ -4,10 +4,16 @@ import {
   H1, Body, Btn, Tag, Divider, FeatureItem,
   SectionHeader, TwoCol, CtaBand, HeroBg, ProcessStep,
 } from "@/components/redbox/Primitives";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
+import DeveloperOnboardingDialog from "@/components/redbox/DeveloperOnboardingDialog";
 
 const PageHow = () => {
   const [tab, setTab] = useState<"dev" | "rel">("dev");
   const nav = useNavigate();
+  const [devDialogOpen, setDevDialogOpen] = useState(false);
+  const [realtorSoon, setRealtorSoon] = useState(false);
 
   return (
     <div>
