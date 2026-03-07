@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ButtonHTMLAttributes, useState } from "react";
 import { cn } from "@/lib/utils";
 
 // Gold line decorator
@@ -52,12 +52,12 @@ export const Body = ({ children, lead, className }: { children: React.ReactNode;
 );
 
 // Buttons
-export const Btn = ({ children, variant = "gold", onClick, className }: {
+export const Btn = ({ children, variant = "gold", onClick, className ,...props}: {
   children: React.ReactNode;
   variant?: "gold" | "outline" | "ghost";
   onClick?: () => void;
   className?: string;
-}) => {
+} & ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <button
       onClick={onClick}
@@ -68,6 +68,7 @@ export const Btn = ({ children, variant = "gold", onClick, className }: {
         variant === "ghost" && "bg-surface-2 text-foreground border border-border hover:bg-surface-3",
         className
       )}
+      {...props}
     >
       {children}
     </button>
