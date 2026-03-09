@@ -179,7 +179,7 @@ const DeveloperOnboardingDialog = ({ open, onOpenChange }: DeveloperOnboardingDi
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[540px] bg-background border-border">
+      <DialogContent className="sm:max-w-[540px] max-h-[90vh] overflow-y-auto bg-background border-border">
         <DialogHeader>
           <DialogTitle className="font-heading text-2xl text-foreground">Developer Onboarding</DialogTitle>
           <DialogDescription className="text-primary text-sm">Complete this form to join RealX</DialogDescription>
