@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { Btn } from "./Primitives";
 import {
   Dialog,
@@ -8,6 +9,12 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import DeveloperOnboardingDialog from "@/components/redbox/DeveloperOnboardingDialog";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 interface NavProps {
   page: string;
@@ -26,6 +33,12 @@ export const Nav = ({ page, setPage }: NavProps) => {
   const [getStartedOpen, setGetStartedOpen] = useState(false);
   const [devDialogOpen, setDevDialogOpen] = useState(false);
   const [realtorSoon, setRealtorSoon] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (id: string) => {
+    setPage(id);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -38,6 +51,7 @@ export const Nav = ({ page, setPage }: NavProps) => {
               <div className="font-body text-[0.6rem] text-primary tracking-wider uppercase">by RealX</div>
             </div>
           </div>
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-0.5">
             {NAV_ITEMS.map(item => (
               <button
@@ -52,8 +66,41 @@ export const Nav = ({ page, setPage }: NavProps) => {
             ))}
             <Btn className="ml-2 py-2 px-4 text-[0.82rem]" onClick={() => setGetStartedOpen(true)}>Get Started →</Btn>
           </div>
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden bg-transparent border-none cursor-pointer p-2 text-foreground"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu size={24} />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile menu sheet */}
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="right" className="w-[280px] bg-background border-border p-0">
+          <SheetHeader className="p-4 border-b border-border">
+            <SheetTitle className="font-heading text-lg text-foreground">Menu</SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-col p-4 gap-1">
+            {NAV_ITEMS.map(item => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`bg-transparent border-none cursor-pointer py-3 px-4 rounded-md font-body text-[0.9rem] font-semibold text-left transition-all ${
+                  page === item.id ? "text-primary bg-primary/[0.08]" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <div className="mt-4 px-4">
+              <Btn className="w-full" onClick={() => { setMobileMenuOpen(false); setGetStartedOpen(true); }}>Get Started →</Btn>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
 
       {/* Get Started chooser modal */}
       <Dialog open={getStartedOpen} onOpenChange={setGetStartedOpen}>
