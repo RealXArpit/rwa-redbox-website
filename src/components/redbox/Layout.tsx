@@ -44,13 +44,17 @@ export const Nav = ({ page, setPage }: NavProps) => {
     <>
       <nav className="sticky top-0 z-[100] bg-background/92 border-b border-border backdrop-blur-[16px]">
         <div className="container flex items-center justify-between h-[60px]">
-          <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => setPage("home")}>
-            <div className="w-[30px] h-[30px] bg-primary rounded-md flex items-center justify-center font-heading text-base font-bold text-primary-foreground">R</div>
-            <div>
-              <div className="font-heading text-[1.1rem] text-foreground leading-none">REDbox</div>
-              <div className="font-body text-[0.6rem] text-primary tracking-wider uppercase">by RealX</div>
-            </div>
-          </div>
+          <button
+            type="button"
+            className="flex items-center gap-2.5 cursor-pointer bg-transparent border-none p-0"
+            onClick={() => setPage("home")}
+          >
+            <img
+              src="/assets/redbox_logo.jpeg"
+              alt="REDbox by RealX"
+              className="h-12 w-auto object-contain"
+            />
+          </button>
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-0.5">
             {NAV_ITEMS.map(item => (
