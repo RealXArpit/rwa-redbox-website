@@ -1,9 +1,14 @@
+import { useLayoutEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { Nav, Footer } from "./Layout";
 
 const AppLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const pageMap: Record<string, string> = {
     "/": "home",
