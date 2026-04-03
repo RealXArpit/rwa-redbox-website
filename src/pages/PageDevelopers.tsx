@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   H1, H2, H3, Body, Btn, Card, Tag, GoldLine, Label, AccentBox,
-  Divider, StepNum, FeatureItem, SectionHeader, Grid,
+  Divider, StepNum, SectionHeader, Grid,
   TwoCol, CtaBand, HeroBg,
 } from "@/components/redbox/Primitives";
 import DeveloperOnboardingDialog from "@/components/redbox/DeveloperOnboardingDialog";
@@ -57,7 +57,14 @@ const PageDevelopers = () => {
       {/* WHAT REDBOX GIVES YOU */}
       <div className="py-20">
         <div className="container">
-          <SectionHeader label="What REDbox Gives You" title="A Complete Tokenisation Platform. On Your Own Website." body="REDbox is not a marketplace listing. It is a full-featured Platform-as-a-Service — a branded tokenisation portal that lives on your own website, under your own domain." />
+          <div className="mb-14 max-w-[680px]">
+            <GoldLine />
+            <Label>What REDbox Gives You</Label>
+            <H2 className="mb-4">A Complete Tokenisation Platform. On Your Own Website.</H2>
+            <Body className="mt-3 text-[1.0rem]">
+              REDbox is not a marketplace listing. It is a full-featured Platform-as-a-Service — a branded tokenisation portal that lives on your own website, under your own domain.
+            </Body>
+          </div>
           <Grid cols={2}>
             {[
               ["🌐", "Your Own Portal, Your Domain", "Your REDbox platform runs on your own subdomain (e.g., invest.yourdevelopment.com). Your investors browse and invest entirely within your brand experience."],
@@ -67,7 +74,15 @@ const PageDevelopers = () => {
               ["🌍", "National Marketplace Visibility", "Every asset on your REDbox platform is also featured on the RealX national marketplace — giving your deals visibility to a wider investor audience."],
               ["📱", "Built for Digital Investors", "Mobile-optimised, KYC-integrated, transaction-ready. The full investor journey — from discovery to ownership — happens digitally on your platform."],
             ].map(([icon, title, body]) => (
-              <FeatureItem key={title as string} icon={icon as string} title={title as string} body={body as string} />
+              <div key={title as string} className="flex gap-4 items-start p-4 bg-surface border border-border rounded-[10px]">
+                <div className="w-[34px] h-[34px] flex-shrink-0 rounded-lg bg-gold-dim border border-gold-border flex items-center justify-center text-[1.05rem]">
+                  {icon}
+                </div>
+                <div>
+                  <p className="font-body text-[0.95rem] font-bold text-foreground mb-1">{title}</p>
+                  <p className="font-body text-[0.9rem] text-muted-foreground leading-relaxed">{body}</p>
+                </div>
+              </div>
             ))}
           </Grid>
         </div>

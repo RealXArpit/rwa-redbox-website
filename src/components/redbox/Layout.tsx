@@ -50,7 +50,7 @@ export const Nav = ({ page, setPage }: NavProps) => {
             onClick={() => setPage("home")}
           >
             <img
-              src="/assets/redbox_logo.jpeg"
+              src="/redboxLogo.svg"
               alt="REDbox by RealX"
               className="h-12 w-auto object-contain"
             />
