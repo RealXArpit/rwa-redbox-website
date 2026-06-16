@@ -11,6 +11,7 @@ import PageRealtors from "./pages/PageRealtors";
 import PageHow from "./pages/PageHow";
 import PageAbout from "./pages/PageAbout";
 import PageFaq from "./pages/PageFaq";
+import PageCrep from "./pages/PageCrep";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/realtors" element={<PageRealtors />} />
             <Route path="/how" element={<PageHow />} />
             <Route path="/about" element={<PageAbout />} />
+            <Route path="/ecosystem-partner" element={<PageCrep />} />
             <Route path="/faq" element={<PageFaq />} />
           </Route>
           <Route path="*" element={<NotFound />} />

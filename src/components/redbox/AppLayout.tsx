@@ -16,6 +16,7 @@ const AppLayout = () => {
     "/realtors": "realtors",
     "/how": "how",
     "/about": "about",
+    "/ecosystem-partner": "ecosystem-partner",
     "/faq": "faq",
   };
 
@@ -28,7 +29,7 @@ const AppLayout = () => {
   const currentPage = pageMap[location.pathname] || "home";
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-clip">
       <Nav page={currentPage} setPage={goTo} />
       <Outlet />
       <Footer setPage={goTo} />
