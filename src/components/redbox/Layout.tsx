@@ -26,6 +26,7 @@ const NAV_ITEMS = [
   { id: "realtors", label: "For Realtors" },
   { id: "how", label: "How It Works" },
   { id: "about", label: "About RealX" },
+  { id: "ecosystem-partner", label: "Ecosystem Partner" },
   { id: "faq", label: "FAQs" },
 ];
 
