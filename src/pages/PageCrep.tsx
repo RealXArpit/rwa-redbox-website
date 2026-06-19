@@ -7,6 +7,7 @@ import {
   Rocket,
   Sparkles,
   X,
+  Plus,
   CheckCircle2,
 } from "lucide-react";
 import {
@@ -170,7 +171,6 @@ const STEPS = [
       "Partner onboarding process",
       "Compliance verification",
       "KYC documentation",
-      "Platform access activation",
     ],
   },
   {
@@ -431,6 +431,8 @@ function FinalCTA({ onApply }: { onApply: () => void }) {
 /* -------------------------------------------------- */
 /* Apply Modal                                         */
 /* -------------------------------------------------- */
+const MAX_DEVELOPER_NAMES = 10;
+
 type FormState = {
   fname: string;
   lname: string;
@@ -442,6 +444,7 @@ type FormState = {
   orgname: string;
   orgtype: string;
   directtDeveloper: string;
+  developerNames: string[];
   joinAsChannelPartner: boolean;
 };
 
@@ -456,6 +459,7 @@ const INITIAL_FORM: FormState = {
   orgname: "",
   orgtype: "",
   directtDeveloper: "",
+  developerNames: [""],
   joinAsChannelPartner: false,
 };
 
@@ -498,11 +502,34 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
 
+  const updateDeveloperName = (index: number, value: string) =>
+    setForm((f) => {
+      const developerNames = [...f.developerNames];
+      developerNames[index] = value;
+      return { ...f, developerNames };
+    });
+
+  const addDeveloperName = () => {
+    if (form.developerNames.length >= MAX_DEVELOPER_NAMES) return;
+    setForm((f) => ({ ...f, developerNames: [...f.developerNames, ""] }));
+  };
+
+  const removeDeveloperName = (index: number) => {
+    if (form.developerNames.length <= 1) return;
+    setForm((f) => ({
+      ...f,
+      developerNames: f.developerNames.filter((_, i) => i !== index),
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
     setEmailError(emailOk ? "" : "Enter a valid email");
     if (!emailOk) return;
+
+    const developerNames = form.developerNames.map((n) => n.trim()).filter(Boolean);
+    if (developerNames.length === 0) return;
 
     const payload = {
       name: `${form.fname} ${form.lname}`.trim(),
@@ -512,6 +539,7 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
       organisation: { name: form.orgname, type: form.orgtype },
       miscDetails: {
         directDeveloper: form.directtDeveloper,
+        developerNames,
         joinAsChannelPartner: form.joinAsChannelPartner,
         source: "REDBOX",
       },
@@ -646,7 +674,13 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
                       maxLength={20}
                       className={inputClass}
                       value={form.mobile}
-                      onChange={(e) => update("mobile", e.target.value)}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, "");
+                        if (value.length > 10) {
+                          return;
+                        }
+                        update("mobile", value)}
+                      }
                       placeholder="Mobile number"
                     />
                   </Field>
@@ -711,7 +745,7 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
                     </select>
                   </Field>
 
-                  <Field label="Direct Developer *">
+                  <Field label="Number of Developers in your direct network *">
                     <input
                       required
                       className={inputClass}
@@ -720,6 +754,48 @@ function ApplyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
                       placeholder="Enter value"
                     />
                   </Field>
+
+                  <div className="md:col-span-2">
+                    <Field label="Mention your top developers — minimum one is necessary *">
+                      <div className="space-y-3">
+                        {form.developerNames.map((name, index) => (
+                          <div key={index} className="flex items-center gap-2">
+                            <input
+                              required={index === 0}
+                              className={inputClass}
+                              value={name}
+                              onChange={(e) => updateDeveloperName(index, e.target.value)}
+                              placeholder={`Developer name ${index + 1}`}
+                            />
+                            {form.developerNames.length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => removeDeveloperName(index)}
+                                aria-label={`Remove developer ${index + 1}`}
+                                className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border bg-surface-2 text-muted-foreground transition-colors hover:border-destructive/40 hover:text-destructive"
+                              >
+                                <X className="h-4 w-4" />
+                              </button>
+                            )}
+                          </div>
+                        ))}
+                        {form.developerNames.length < MAX_DEVELOPER_NAMES && (
+                          <Btn
+                            type="button"
+                            variant="outline"
+                            className="w-full sm:w-auto"
+                            onClick={addDeveloperName}
+                          >
+                            <Plus className="h-4 w-4" />
+                            Add Developer
+                          </Btn>
+                        )}
+                      </div>
+                      <span className="mt-2 block font-body text-[0.75rem] text-muted-foreground">
+                        You can add up to {MAX_DEVELOPER_NAMES} developer names
+                      </span>
+                    </Field>
+                  </div>
                 </div>
 
                 {emailError ? (
