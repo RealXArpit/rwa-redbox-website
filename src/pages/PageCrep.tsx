@@ -171,7 +171,6 @@ const STEPS = [
       "Partner onboarding process",
       "Compliance verification",
       "KYC documentation",
-      "Platform access activation",
     ],
   },
   {
