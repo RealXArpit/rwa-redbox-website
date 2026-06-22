@@ -163,12 +163,35 @@ export function useBrochureFlow() {
     });
   }
 
+  async function requestOutreach(updatedPhone: string) {
+    set({ loading: true, error: null });
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/redbox/request-outreach`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          submissionId: state.submissionId,
+          updatedPhone,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Request failed");
+      set({ loading: false });
+      return true;
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Something went wrong";
+      set({ loading: false, error: msg });
+      return false;
+    }
+  }
+
   return {
     state,
     submitFile,
     confirmPsf,
     confirmPreview,
     submitLead,
+    requestOutreach,
     set,
     reset,
   };
